@@ -12,6 +12,7 @@ const App = () => {
       <div className="absolute">
         <Sidebar expanded={expanded} setExpanded={setExpanded} />
       </div>
+      <div className='w-[94%] h-1 bg-zinc-400 rounded-full m-auto'></div>
       <div className="flex items-start justify-center">
         <CreateQuiz />
       </div>
