@@ -18,7 +18,27 @@ const NewQuiz = () => {
   const [isItalic, setIsItalic] = useState(false)
   const [isUnderline, setIsUnderline] = useState(false)
 
-  return (
+
+  const onSubmit = async (data) => {
+    data.titleDecoration = {
+      titleIsBold,
+      titleIsItalic,
+      titleIsUnderline
+    }
+    data.descDecoration = {
+      descIsBold,
+      descIsItalic,
+      descIsUnderline 
+    }
+    console.log(data)
+    const r = await fetch("http://localhost:3000", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data) 
+                })
+    }
+
+  return (    
     <div className="max-h-full min-h-screen w-full relative font-[Gilroy-Semibold] bg-slate-300 text-black dark:bg-zinc-900 dark:text-white">
       <Header expanded={expanded} setExpanded={setExpanded} />
       <div className="absolute">
@@ -26,9 +46,9 @@ const NewQuiz = () => {
       </div> 
       <div className='w-[94%] h-1 bg-zinc-400 rounded-full m-auto mb-10'></div>
 
-      <form action="" className='w-[60%] p-9 m-auto'>
+      <form action="/create" onSubmit={handleSubmit(onSubmit)} className='w-[60%] p-9 m-auto'>
 
-      <div className="focus-within:border-l-8 focus-within:border-l-yellow-500 bg-zinc-800 p-7 text-2xl rounded-xl border-t-[10px] border-t-sky-600">
+      <div className="focus-within:border-l-8 focus-within:border-l-yellow-500 bg-zinc-800 p-7 text-2xl rounded-lg border-t-[10px] border-t-sky-600">
         <div className="">
           <input type='text' {...register('title', {required: true})} placeholder='Untitled Quiz' className={`bg-transparent text-white outline-none border-b-2 border-b-zinc-700 focus:border-b-zinc-500 focus:border-b-4 ${titleIsBold ? "font-[Gilroy-Semibold]": "font-[Gilroy-Regular]"} ${titleIsUnderline? "underline": ""} ${titleIsItalic ? "italic" : ""}`} />
           <div className="flex gap-3 text-base mt-2 ml-2">
@@ -46,6 +66,18 @@ const NewQuiz = () => {
           </div>
         </div>
       </div>
+
+
+      <div className="focus-within:border-l-8 focus-within:border-l-yellow-500 bg-zinc-800 p-7 text-2xl rounded-lg mt-5">
+        <div className="">
+          
+        </div>
+      </div>
+
+      <div className="mt-5 text-center">
+        <button type='submit' className='text-3xl px-4 py-2 bg-emerald-600 rounded-md'>Add Quiz</button>
+      </div>
+
 
       </form>
 
