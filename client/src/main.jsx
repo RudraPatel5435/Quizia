@@ -3,13 +3,14 @@ import './index.css'
 import { BrowserRouter, Routes, Route } from "react-router";
 import App from './App.jsx'
 import NewQuiz from './components/NewQuiz/NewQuiz.jsx';
-import Header from './components/Header.jsx';
+import Quizes from './components/Quizes.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/create" element={<NewQuiz />} />
+      <Route path='/quiz' element={<Quizes />} />
     </Routes>
   </BrowserRouter>,
 )

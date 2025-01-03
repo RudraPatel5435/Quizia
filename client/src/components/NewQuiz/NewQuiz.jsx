@@ -19,6 +19,17 @@ const NewQuiz = () => {
   const [isItalic, setIsItalic] = useState(false)
   const [isUnderline, setIsUnderline] = useState(false)
 
+  const [quizes, setQuizes] = useState([])
+
+  const addSection = () => {
+     allQuizes.quizes.push({
+      Q: '',
+      type: '',
+      A: ''
+     })
+     console.log(allQuizes)
+  }
+
 
   const onSubmit = async (data) => {
     data.titleDecoration = {
