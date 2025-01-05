@@ -146,15 +146,15 @@ const App = () => {
 
   const [expanded, setExpanded] = useState(false)
   return(
-    <div className="max-h-full min-h-screen w-full relative font-[Gilroy-Semibold] bg-slate-300 text-black dark:bg-zinc-900 dark:text-white">
+    <div className="max-h-full min-h-screen w-screen relative font-[Gilroy-Semibold] bg-slate-300 text-black dark:bg-zinc-900 dark:text-white">
       <Header expanded={expanded} setExpanded={setExpanded} />
       <div className="absolute">
         <Sidebar expanded={expanded} setExpanded={setExpanded} />
       </div>
       <div className='w-[94%] h-1 bg-zinc-400 rounded-full m-auto'></div>
-      <NavLink to='/create' className="flex items-start justify-center">
+      <div className="flex items-start justify-center">
         <CreateQuiz />
-      </NavLink>
+      </div>
       <div className='flex flex-wrap flex-col gap-16 p-20'>
         <div className="text-3xl text-center py-2 rounded-lg  border-4 border-slate-600">Your Quizes</div>
         <div className="flex flex-wrap items-center justify-center gap-5">
