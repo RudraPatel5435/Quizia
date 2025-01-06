@@ -1,0 +1,167 @@
+[
+  {
+    "title": {
+      "name": "Science Trivia",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "desc": {
+      "name": "Test your basic science knowledge with these fun and engaging questions.",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "quizes": [
+      {
+        "Q": "What is the chemical symbol for water?",
+        "options": ["H2O", "O2", "CO2", "H2"],
+        "A": "H2O",
+        "id": 1
+      },
+      {
+        "Q": "Explain the process of photosynthesis.",
+        "options": [
+          "It occurs in chloroplasts.",
+          "It uses light to produce glucose.",
+          "Green plants do it.",
+          "Photosynthesis is a process by which plants use sunlight to synthesize foods."
+        ],
+        "A": "Photosynthesis is a process by which plants use sunlight to synthesize foods.",
+        "id": 2
+      }
+    ]
+  },
+  {
+    "title": {
+      "name": "Math Basics",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "desc": {
+      "name": "Brush up on your math fundamentals with these essential questions.",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "quizes": [
+      {
+        "Q": "What is 5 + 3?",
+        "options": ["6", "7", "8", "9"],
+        "A": "8",
+        "id": 3
+      },
+      {
+        "Q": "Describe the Pythagorean theorem.",
+        "options": [
+          "It relates sides of a triangle.",
+          "Hypotenuse equals side squares.",
+          "Math concept.",
+          "The square of the hypotenuse equals the sum of the squares of the other two sides."
+        ],
+        "A": "The square of the hypotenuse equals the sum of the squares of the other two sides.",
+        "id": 4
+      }
+    ]
+  },
+  {
+    "title": {
+      "name": "World Geography",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "desc": {
+      "name": "Explore the world with these basic geography questions.",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "quizes": [
+      {
+        "Q": "What is the capital of France?",
+        "options": ["Paris", "London", "Berlin", "Madrid"],
+        "A": "Paris",
+        "id": 5
+      },
+      {
+        "Q": "Describe the layers of the Earth.",
+        "options": [
+          "Crust, mantle, core.",
+          "Crust and core.",
+          "Earth structure.",
+          "The Earth consists of three main layers: crust, mantle, core."
+        ],
+        "A": "The Earth consists of three main layers: crust, mantle, core.",
+        "id": 6
+      }
+    ]
+  },
+  {
+    "title": {
+      "name": "Tech Knowledge",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "desc": {
+      "name": "Test your knowledge of technology and its history.",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "quizes": [
+      {
+        "Q": "Who is known as the father of computers?",
+        "options": ["Charles Babbage", "Alan Turing", "Bill Gates", "Steve Jobs"],
+        "A": "Charles Babbage",
+        "id": 7
+      },
+      {
+        "Q": "Explain the concept of cloud computing.",
+        "options": [
+          "Internet services.",
+          "Storage in the cloud.",
+          "Resources delivered via the internet.",
+          "Cloud computing involves delivering computing services over the internet."
+        ],
+        "A": "Cloud computing involves delivering computing services over the internet.",
+        "id": 8
+      }
+    ]
+  },
+  {
+    "title": {
+      "name": "Historical Insights",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "desc": {
+      "name": "Dive into the past with these historical trivia questions.",
+      "isBold": true,
+      "isItalic": false,
+      "isUnderline": false
+    },
+    "quizes": [
+      {
+        "Q": "Who was the first President of the United States?",
+        "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"],
+        "A": "George Washington",
+        "id": 9
+      },
+      {
+        "Q": "Describe the Industrial Revolution.",
+        "options": [
+          "18th-century change.",
+          "Mass production era.",
+          "Industrialization.",
+          "The Industrial Revolution was a period of major innovation and change."
+        ],
+        "A": "The Industrial Revolution was a period of major innovation and change.",
+        "id": 10
+      }
+    ]
+  }
+]
