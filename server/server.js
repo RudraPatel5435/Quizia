@@ -31,8 +31,13 @@ app.post('/publish', async (req, res)=>{
 })
 
 app.get('/sendQuizes', async(req, res)=>{
-  const allQuizesMongo = await quizModel.find()
-  res.send(allQuizesMongo)
+  try {
+    const allQuizesMongo = await quizModel.find({});
+    res.status(200).send(allQuizesMongo);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: "Error fetching quizzes from the database" });
+  }
 })
 
 app.listen(3000)

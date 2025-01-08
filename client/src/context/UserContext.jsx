@@ -11,12 +11,7 @@ const UserContext = ({children}) => {
     const jsonData = await response.json()
     setQuizData(jsonData)
   }
-  console.log(quizData)
-  useEffect(()=>{
     fetchQuizes()
-  }, [])
-
-
   return (
     <div>
       <AllQuizes.Provider value={quizData}>

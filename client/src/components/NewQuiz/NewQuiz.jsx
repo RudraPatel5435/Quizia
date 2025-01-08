@@ -1,154 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import Header from '../Header'
 import Sidebar from '../HomePage/Sidebar'
 import { IoAddCircle } from "react-icons/io5";
+import { AllQuizes } from '../../context/UserContext';
 
 const NewQuiz = () => {
+  const allQuizes = useContext(AllQuizes)
   const{handleSubmit} = useForm();
-
   const [expanded, setExpanded] = useState(false)
-
-  const allQuizes = [
-    {
-      title: {
-        name: 'Science Trivia',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      desc: {
-        name: 'Test your basic science knowledge with these fun and engaging questions.',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      quizes: [
-        {
-          Q: 'What is the chemical symbol for water?',
-          type: 'radio',
-          options: ['H2O', 'O2', 'CO2', 'H2'],
-          A: 'H2O'
-        },
-        {
-          Q: 'Explain the process of photosynthesis.',
-          type: 'textarea',
-          A: 'Photosynthesis is the process by which green plants convert light energy into chemical energy, using carbon dioxide and water to produce glucose and oxygen.'
-        }
-      ]
-    },
-    {
-      title: {
-        name: 'Math Basics',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      desc: {
-        name: 'Brush up on your math fundamentals with these essential questions.',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      quizes: [
-        {
-          Q: 'What is 5 + 3?',
-          type: 'radio',
-          options: ['6', '7', '8', '9'],
-          A: '8'
-        },
-        {
-          Q: 'Describe the Pythagorean theorem.',
-          type: 'textarea',
-          A: 'The Pythagorean theorem states that in a right triangle, the square of the hypotenuse length is equal to the sum of the squares of the other two sides.'
-        }
-      ]
-    },
-    {
-      title: {
-        name: 'World Geography',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      desc: {
-        name: 'Explore the world with these basic geography questions.',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      quizes: [
-        {
-          Q: 'What is the capital of France?',
-          type: 'radio',
-          options: ['Paris', 'London', 'Berlin', 'Madrid'],
-          A: 'Paris'
-        },
-        {
-          Q: 'Describe the layers of the Earth.',
-          type: 'textarea',
-          A: 'The Earth consists of three main layers: the crust, the mantle, and the core, which is divided into the outer core and inner core.'
-        }
-      ]
-    },
-    {
-      title: {
-        name: 'Tech Knowledge',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      desc: {
-        name: 'Test your knowledge of technology and its history.',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      quizes: [
-        {
-          Q: 'Who is known as the father of computers?',
-          type: 'radio',
-          options: ['Charles Babbage', 'Alan Turing', 'Bill Gates', 'Steve Jobs'],
-          A: 'Charles Babbage'
-        },
-        {
-          Q: 'Explain the concept of cloud computing.',
-          type: 'textarea',
-          A: 'Cloud computing involves delivering computing services such as servers, storage, databases, networking, software, over the internet (the cloud) to offer faster innovation, flexible resources, and economies of scale.'
-        }
-      ]
-    },
-    {
-      title: {
-        name: 'Historical Insights',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      desc: {
-        name: 'Dive into the past with these historical trivia questions.',
-        isBold: true,
-        isItalic: false,
-        isUnderline: false
-      },
-      quizes: [
-        {
-          Q: 'Who was the first President of the United States?',
-          type: 'radio',
-          options: ['George Washington', 'Thomas Jefferson', 'Abraham Lincoln', 'John Adams'],
-          A: 'George Washington'
-        },
-        {
-          Q: 'Describe the Industrial Revolution.',
-          type: 'textarea',
-          A: 'The Industrial Revolution was a period of major industrialization and innovation during the 18th and 19th centuries that led to significant social, economic, and cultural changes worldwide.'
-        }
-      ]
-    }
-  ]
-
   const [quizID, setQuizID] = useState(2)
-
   const [newQuiz, setNewQuiz] = useState({
     title: { 
       name: 'Untitled Quiz',
