@@ -8,7 +8,7 @@ const App = () => {
 
   const [expanded, setExpanded] = useState(false)
   return(
-    <div className="max-h-full min-h-screen w-screen relative font-[Gilroy-Semibold] bg-slate-300 dark:bg-zinc-900 dark:text-white">
+    <div className="max-h-full min-h-screen w-screen relative font-[Gilroy-Semibold] bg-slate-300 dark:bg-zinc-900">
       <Header expanded={expanded} setExpanded={setExpanded} />
       <div className="absolute">
         <Sidebar expanded={expanded} setExpanded={setExpanded} />

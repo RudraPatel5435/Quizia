@@ -32,7 +32,6 @@ const NewQuiz = () => {
       }
     ]
   })
-
   const addQuestion = () => {
     setNewQuiz((prevState) => ({
       ...prevState,
@@ -41,7 +40,7 @@ const NewQuiz = () => {
         {
           id: quizID,
           Q: '',
-          options: ["", ""],
+          options: [""],
           A: ''
         }
       ]
@@ -56,6 +55,7 @@ const NewQuiz = () => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newQuiz)
     })  
+    console.log(newQuiz)
   }
 
 
@@ -117,7 +117,7 @@ const NewQuiz = () => {
                     value={quiz.Q}
                     onChange={(e) => {
                       const updatedQuizes = [...newQuiz.quizes]
-                      updatedQuizes[idx] = { ...updatedQuizes[idx], Q: e.target.value }
+                      updatedQuizes[idx].Q = e.target.value
                       setNewQuiz((prevState) => ({
                         ...prevState,
                         quizes: updatedQuizes
@@ -134,11 +134,34 @@ const NewQuiz = () => {
                         />
                         <input
                           type="text"
+                          value={option}
                           placeholder={`Option ${oidx + 1}`}
                           className='text-sm ml-3 rounded-sm bg-blue-200 dark:bg-zinc-600 outline-none px-1 py-[2px]'
+                          onChange={(e)=>{
+                            const updatedOptions = [...newQuiz.quizes]
+                            updatedOptions[idx].options[oidx] = e.target.value
+                            setNewQuiz((prevState)=>({
+                              ...prevState, 
+                              quizes: updatedOptions
+                            }))
+                          }}
                         />
                       </div>
                     ))}
+                    <div onClick={()=>{
+                      const newOption = [...newQuiz.quizes] 
+                      newOption[idx].options.push('')
+                      setNewQuiz((prevState)=>({
+                      ...prevState,
+                      quizes: newOption
+                    }))}} className="">
+                      <input type="radio" />
+                      <input 
+                        type="text" 
+                        className='text-sm ml-3 rounded-sm bg-blue-200 dark:bg-zinc-600 outline-none px-1 py-[2px]'
+                        defaultValue="" 
+                        placeholder="Add Option" />
+                    </div>
                   </div>
                 </div>
               </div>
