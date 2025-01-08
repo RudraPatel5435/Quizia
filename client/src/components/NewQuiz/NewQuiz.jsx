@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import Header from '../Header'
+import Header from '../Decor/Header'
 import Sidebar from '../HomePage/Sidebar'
 import { IoAddCircle } from "react-icons/io5";
 import { AllQuizes } from '../../context/UserContext';

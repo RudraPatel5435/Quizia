@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Header from './Header'
+import Header from './Decor/Header'
 import Sidebar from './HomePage/Sidebar'
 import { useParams } from 'react-router'
 import { AllQuizes } from '../context/UserContext'
