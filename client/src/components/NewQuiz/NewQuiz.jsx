@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { RxCross2 } from "react-icons/rx";
 import { useForm } from 'react-hook-form';
 import Header from '../Decor/Header'
 import Sidebar from '../HomePage/Sidebar'
@@ -7,21 +8,21 @@ import { AllQuizes } from '../../context/UserContext';
 
 const NewQuiz = () => {
   const allQuizes = useContext(AllQuizes)
-  const{handleSubmit} = useForm();
+  const { handleSubmit } = useForm();
   const [expanded, setExpanded] = useState(false)
   const [quizID, setQuizID] = useState(2)
   const [newQuiz, setNewQuiz] = useState({
-    title: { 
+    title: {
       name: 'Untitled Quiz',
       isBold: false,
       isItalic: false,
       isUnderline: false
-     },
-    desc: { 
+    },
+    desc: {
       name: 'Quiz Description',
       isBold: false,
       isItalic: false,
-      isUnderline: false 
+      isUnderline: false
     },
     quizes: [
       {
@@ -51,10 +52,10 @@ const NewQuiz = () => {
 
   const onSubmit = async () => {
     await fetch("http://localhost:3000/publish", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newQuiz)
-    })  
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newQuiz)
+    })
     console.log(newQuiz)
   }
 
@@ -82,12 +83,12 @@ const NewQuiz = () => {
                 placeholder='Untitled Quiz'
                 className={`bg-transparent text-white outline-none border-b-2 border-b-blue-100 dark:border-b-zinc-700 focus:border-b-blue-200 dark:focus:border-b-zinc-500 focus:border-b-4 ${newQuiz.title.isBold ? "font-[Gilroy-Semibold]" : "font-[Gilroy-Regular]"} ${newQuiz.title.isUnderline ? "underline" : ""} ${newQuiz.title.isItalic ? "italic" : ""}`}
                 value={newQuiz.title.name}
-                onChange={(e) => { setNewQuiz({ ...newQuiz, title: {...newQuiz.title, name: e.target.value } }) }}
+                onChange={(e) => { setNewQuiz({ ...newQuiz, title: { ...newQuiz.title, name: e.target.value } }) }}
               />
               <div className="flex gap-3 text-base mt-2 ml-2">
-                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-slate-400 rounded-md ${newQuiz.title.isBold ? "bg-slate-400" : ""}`} onClick={() => {setNewQuiz({...newQuiz, title: {...newQuiz.title, isBold: !newQuiz.title.isBold}})}}>B</div>
-                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.title.isItalic ? "bg-slate-400" : ""}`} onClick={() => {setNewQuiz({...newQuiz, title: {...newQuiz.title, isItalic: !newQuiz.title.isItalic}})}}>I</div>
-                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.title.isUnderline ? "bg-slate-400" : ""}`} onClick={() => {setNewQuiz({...newQuiz, title: {...newQuiz.title, isUnderline: !newQuiz.title.isUnderline}})}}>U</div>
+                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-slate-400 rounded-md ${newQuiz.title.isBold ? "bg-slate-400" : ""}`} onClick={() => { setNewQuiz({ ...newQuiz, title: { ...newQuiz.title, isBold: !newQuiz.title.isBold } }) }}>B</div>
+                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.title.isItalic ? "bg-slate-400" : ""}`} onClick={() => { setNewQuiz({ ...newQuiz, title: { ...newQuiz.title, isItalic: !newQuiz.title.isItalic } }) }}>I</div>
+                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.title.isUnderline ? "bg-slate-400" : ""}`} onClick={() => { setNewQuiz({ ...newQuiz, title: { ...newQuiz.title, isUnderline: !newQuiz.title.isUnderline } }) }}>U</div>
               </div>
             </div>
             <div className="mt-2">
@@ -96,12 +97,12 @@ const NewQuiz = () => {
                 placeholder='Quiz Description'
                 className={`text-lg bg-transparent text-white outline-none border-b-2 border-b-blue-100 dark:border-b-zinc-700 focus:border-b-blue-200 dark:focus:border-b-zinc-500 focus:border-b-4 ${newQuiz.desc.isBold ? "font-[Gilroy-Semibold]" : "font-[Gilroy-Regular]"} ${newQuiz.desc.isUnderline ? "underline" : ""} ${newQuiz.desc.isItalic ? "italic" : ""}`}
                 value={newQuiz.desc.name}
-                onChange={(e) => { setNewQuiz({ ...newQuiz, desc: {...newQuiz.desc,  name: e.target.value } }) }}
+                onChange={(e) => { setNewQuiz({ ...newQuiz, desc: { ...newQuiz.desc, name: e.target.value } }) }}
               />
               <div className="flex gap-3 text-base mt-2 ml-2">
-                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-slate-400 rounded-md ${newQuiz.desc.isBold ? "bg-slate-400" : ""}`} onClick={() => {setNewQuiz({...newQuiz, desc: {...newQuiz.desc, isBold: !newQuiz.desc.isBold}})}}>B</div>
-                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.desc.isItalic ? "bg-slate-400" : ""}`} onClick={() => {setNewQuiz({...newQuiz, desc: {...newQuiz.desc, isItalic: !newQuiz.desc.isItalic}})}}>I</div>
-                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.desc.isUnderline ? "bg-slate-400" : ""}`} onClick={() => {setNewQuiz({...newQuiz, desc: {...newQuiz.desc, isUnderline: !newQuiz.desc.isUnderline}})}}>U</div>
+                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-slate-400 rounded-md ${newQuiz.desc.isBold ? "bg-slate-400" : ""}`} onClick={() => { setNewQuiz({ ...newQuiz, desc: { ...newQuiz.desc, isBold: !newQuiz.desc.isBold } }) }}>B</div>
+                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.desc.isItalic ? "bg-slate-400" : ""}`} onClick={() => { setNewQuiz({ ...newQuiz, desc: { ...newQuiz.desc, isItalic: !newQuiz.desc.isItalic } }) }}>I</div>
+                <div className={`cursor-pointer text-center h-6 w-6 bg-blue-200 dark:bg-gray-700 hover:bg-gray-400 rounded-md ${newQuiz.desc.isUnderline ? "bg-slate-400" : ""}`} onClick={() => { setNewQuiz({ ...newQuiz, desc: { ...newQuiz.desc, isUnderline: !newQuiz.desc.isUnderline } }) }}>U</div>
               </div>
             </div>
           </div>
@@ -127,7 +128,7 @@ const NewQuiz = () => {
                     className='ml-3 w-5/6 font-[Gilroy-Regular] px-2 py-1 text-lg bg-blue-200 dark:bg-neutral-700 font-semibold text-black dark:text-white outline-none border-b-2 border-b-zinc-500 focus:border-b-blue-500 focus:border-b-4' />
                   <div className="mt-3">
                     {quiz.options.map((option, oidx) => (
-                      <div key={oidx}>
+                      <div key={oidx} className="flex mt-2 items-center">
                         <input
                           type="radio"
                           name={quiz.id}
@@ -137,29 +138,42 @@ const NewQuiz = () => {
                           value={option}
                           placeholder={`Option ${oidx + 1}`}
                           className='text-sm ml-3 rounded-sm bg-blue-200 dark:bg-zinc-600 outline-none px-1 py-[2px]'
-                          onChange={(e)=>{
+                          onChange={(e) => {
                             const updatedOptions = [...newQuiz.quizes]
                             updatedOptions[idx].options[oidx] = e.target.value
-                            setNewQuiz((prevState)=>({
-                              ...prevState, 
+                            setNewQuiz((prevState) => ({
+                              ...prevState,
                               quizes: updatedOptions
                             }))
                           }}
                         />
+                        <div  
+                          onClick={()=>{
+                            const deleteOption = [...newQuiz.quizes]
+                            deleteOption[idx].options.splice(oidx, 1)
+                            setNewQuiz((prevState)=>({
+                              ...prevState,
+                              quizes: deleteOption
+                            }))
+                          }}
+                          className="flex items-center justify-center rounded-full p-1  ml-3 w-6 h-6 cursor-pointer hover:bg-blue-200 text-white dark:hover:bg-zinc-600">
+                          <RxCross2 />
+                        </div>
                       </div>
                     ))}
-                    <div onClick={()=>{
-                      const newOption = [...newQuiz.quizes] 
+                    <div onClick={() => {
+                      const newOption = [...newQuiz.quizes]
                       newOption[idx].options.push('')
-                      setNewQuiz((prevState)=>({
-                      ...prevState,
-                      quizes: newOption
-                    }))}} className="">
-                      <input type="radio" />
-                      <input 
-                        type="text" 
+                      setNewQuiz((prevState) => ({
+                        ...prevState,
+                        quizes: newOption
+                      }))
+                    }} className="cursor-pointer">
+                      <input disabled type="radio" />
+                      <input
+                        type="text"
                         className='text-sm ml-3 rounded-sm bg-blue-200 dark:bg-zinc-600 outline-none px-1 py-[2px]'
-                        defaultValue="" 
+                        defaultValue=""
                         placeholder="Add Option" />
                     </div>
                   </div>
