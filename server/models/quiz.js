@@ -13,7 +13,7 @@ const quizSchema = new mongoose.Schema({
     isUnderline: Boolean,
     isItalic: Boolean
   },
-  quizes: {type:Array} 
+  quizes: Array 
 })
 
 const quizModel = mongoose.model('quiz', quizSchema)

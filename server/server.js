@@ -10,23 +10,21 @@ app.use(bodyParser.json())
 
 app.post('/publish', async (req, res)=>{
   const {title, desc, quizes} =  req.body
-  // const newQuiz = await quizModel.create({
-  //   title: {
-  //     name: title.name,
-  //     isBold: title.isBold,
-  //     isUnderline: title.isUnderline,
-  //     isItalic: title.isItalic
-  //   },
-  //   desc: {
-  //     name: desc.name,
-  //     isBold: desc.isBold,
-  //     isItalic: desc.isItalic,
-  //     isUnderline: desc.isUnderline,
-  //   },
-  //   quizes: [
-  //     {quizes}
-  //   ]
-  // })
+  const newQuiz = await quizModel.create({
+    title: {
+      name: title.name,
+      isBold: title.isBold,
+      isUnderline: title.isUnderline,
+      isItalic: title.isItalic
+    },
+    desc: {
+      name: desc.name,
+      isBold: desc.isBold,
+      isItalic: desc.isItalic,
+      isUnderline: desc.isUnderline,
+    },
+    quizes: quizes 
+  })
   res.send("Quiz successfully published")
 })
 
