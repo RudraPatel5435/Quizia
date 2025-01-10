@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const quizModel = require('./models/quiz')
 const db = require('./config/db')
+const PORT  = process.env.PORT
 
 const app = express()
 app.use(cors())
@@ -10,21 +11,21 @@ app.use(bodyParser.json())
 
 app.post('/publish', async (req, res)=>{
   const {title, desc, quizes} =  req.body
-  // const newQuiz = await quizModel.create({
-  //   title: {
-  //     name: title.name,
-  //     isBold: title.isBold,
-  //     isUnderline: title.isUnderline,
-  //     isItalic: title.isItalic
-  //   },
-  //   desc: {
-  //     name: desc.name,
-  //     isBold: desc.isBold,
-  //     isItalic: desc.isItalic,
-  //     isUnderline: desc.isUnderline,
-  //   },
-  //   quizes: quizes 
-  // })
+  const newQuiz = await quizModel.create({
+    title: {
+      name: title.name,
+      isBold: title.isBold,
+      isUnderline: title.isUnderline,
+      isItalic: title.isItalic
+    },
+    desc: {
+      name: desc.name,
+      isBold: desc.isBold,
+      isItalic: desc.isItalic,
+      isUnderline: desc.isUnderline,
+    },
+    quizes: quizes 
+  })
   res.send("Quiz successfully published")
 })
 
@@ -38,4 +39,4 @@ app.get('/sendQuizes', async(req, res)=>{
   }
 })
 
-app.listen(3000)
+app.listen(PORT || 3000)
