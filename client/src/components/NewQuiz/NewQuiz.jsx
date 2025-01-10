@@ -5,10 +5,9 @@ import { useForm } from 'react-hook-form';
 import Header from '../Decor/Header'
 import Sidebar from '../HomePage/Sidebar'
 import { IoAddCircle } from "react-icons/io5";
-import { AllQuizes } from '../../context/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 const NewQuiz = () => {
-  const allQuizes = useContext(AllQuizes)
   const { handleSubmit } = useForm();
   const [expanded, setExpanded] = useState(false)
   const [quizID, setQuizID] = useState(2)
@@ -35,10 +34,10 @@ const NewQuiz = () => {
     ]
   })
   const addQuestion = () => {
-    setNewQuiz((prevState) => ({
-      ...prevState,
+    setNewQuiz({
+      ...newQuiz,
       quizes: [
-        ...prevState.quizes,
+        ...newQuiz.quizes,
         {
           id: quizID,
           Q: '',
@@ -46,18 +45,50 @@ const NewQuiz = () => {
           A: ''
         }
       ]
-    }))
+    })
     setQuizID(quizID + 1)
   }
 
 
   const onSubmit = async () => {
+    if(newQuiz.quizes.length==0) return
+    toast.success('Quiz Uploaded !', {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
     await fetch("http://localhost:3000/publish", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newQuiz)
     })
-    console.log(newQuiz)
+    setNewQuiz({
+      title: {
+        name: 'Untitled Quiz',
+        isBold: false,
+        isItalic: false,
+        isUnderline: false
+      },
+      desc: {
+        name: '',
+        isBold: false,
+        isItalic: false,
+        isUnderline: false
+      },
+      quizes: [
+        {
+          id: 1,
+          Q: '',
+          options: ["", ""],
+          A: ''
+        }
+      ]
+    })
   }
 
 
@@ -81,6 +112,7 @@ const NewQuiz = () => {
             <div className="">
               <input
                 type='text'
+                name='title'
                 placeholder='Untitled Quiz'
                 className={`bg-transparent text-white outline-none border-b-2 border-b-blue-100 dark:border-b-zinc-700 focus:border-b-blue-200 dark:focus:border-b-zinc-500 focus:border-b-4 ${newQuiz.title.isBold ? "font-[Gilroy-Semibold]" : "font-[Gilroy-Regular]"} ${newQuiz.title.isUnderline ? "underline" : ""} ${newQuiz.title.isItalic ? "italic" : ""}`}
                 value={newQuiz.title.name}
@@ -95,6 +127,7 @@ const NewQuiz = () => {
             <div className="mt-2">
               <input
                 type='text'
+                name='desc'
                 placeholder='Description (Optional)'
                 className={`text-lg bg-transparent text-white outline-none border-b-2 border-b-blue-100 dark:border-b-zinc-700 focus:border-b-blue-200 dark:focus:border-b-zinc-500 focus:border-b-4 ${newQuiz.desc.isBold ? "font-[Gilroy-Semibold]" : "font-[Gilroy-Regular]"} ${newQuiz.desc.isUnderline ? "underline" : ""} ${newQuiz.desc.isItalic ? "italic" : ""}`}
                 value={newQuiz.desc.name}
@@ -117,6 +150,7 @@ const NewQuiz = () => {
                   <input
                     required
                     type="text"
+                    name='question'
                     value={quiz.Q}
                     onChange={(e) => {
                       const updatedQuizes = [...newQuiz.quizes]
@@ -134,6 +168,7 @@ const NewQuiz = () => {
                         />
                         <input
                           type="text"
+                          name='option'
                           required
                           value={option}
                           placeholder={`Option ${oidx + 1}`}
@@ -160,9 +195,10 @@ const NewQuiz = () => {
                       newOption[idx].options.push('')
                       setNewQuiz({...newQuiz, quizes: newOption})
                       }} className="cursor-pointer">
-                      <input disabled type="radio" />
+                      <input disabled type="radio" name='addOptionRadio' />
                       <input
                         type="text"
+                        name='addOptionText'
                         className='text-sm ml-3 rounded-sm bg-blue-200 dark:bg-zinc-600 outline-none px-1 py-[2px]'
                         readOnly
                         placeholder="Add Option" />
@@ -171,6 +207,7 @@ const NewQuiz = () => {
                       <div className='mt-3'>Correct Option</div>
                       <input 
                         type="text" 
+                        name='corrOption'
                         onChange={(e)=>{
                           const corrOption = [...newQuiz.quizes]
                           corrOption[idx].A = parseInt(e.target.value)-1
@@ -202,14 +239,16 @@ const NewQuiz = () => {
           </div>
 
           <div className="mt-10 text-center">
-            <button type='submit' className='max-w-3/4 text-4xl text- px-4 py-2 text-neutral-300 bg-emerald-600 rounded-md '>Publish Quiz</button>
+            <button type='submit' className={`max-w-3/4 text-4xl text- px-4 py-2 text-neutral-300 ${newQuiz.quizes.length==0 ? 'bg-gray-400' : 'bg-emerald-600'} rounded-md`}>Publish Quiz</button>
           </div>
+          {newQuiz.quizes.length==0 ? <div className="text-xl text-center mt-3">Enter a minimum of 1 Question</div> : ""}
 
 
         </form>
 
 
       </div>
+      <ToastContainer />
     </div>
   )
 }

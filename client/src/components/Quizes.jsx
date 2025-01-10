@@ -3,18 +3,36 @@ import Header from './Decor/Header'
 import Sidebar from './HomePage/Sidebar'
 import { useParams } from 'react-router'
 import { AllQuizes } from '../context/UserContext'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Quizes = () => {
 
-  const allQuizes = useContext(AllQuizes) 
+  const allQuizes = useContext(AllQuizes)
   const [expanded, setExpanded] = useState(false)
   const { title } = useParams()
   let quiz = null
 
-  try{if (allQuizes && allQuizes.length > 0) {
-    quiz = allQuizes.find((q) => q.title.name === title)
-  }}catch {
+  try {
+    if (allQuizes && allQuizes.length > 0) {
+      quiz = allQuizes.find((q) => q.title.name === title)
+    }
+  } catch {
     console.log('NO DATA')
+  }
+
+  const displayScore = (e) => {
+    e.preventDefault()
+    toast.info(`You Scored 10/10!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored"
+    })
+
   }
 
   return (
@@ -56,11 +74,12 @@ const Quizes = () => {
           })}
 
           <div className="mt-5 text-center">
-            <button type='submit' className='text-3xl px-4 py-2  border-4 dark:border-emerald-400 dark:bg-emerald-600 border-emerald-600 bg-emerald-400 text-neutral-800 dark:text-white mt-3 w-full rounded-md'>Submit Answers</button>
+            <button onClick={(e) => { displayScore(e) }} type='submit' className='text-3xl px-4 py-2  border-4 dark:border-emerald-400 dark:bg-emerald-600 border-emerald-600 bg-emerald-400 text-neutral-800 dark:text-white mt-3 w-full rounded-md'>Submit Answers</button>
           </div>
 
 
         </form>)}
+      <ToastContainer />
     </div>
   )
 }
